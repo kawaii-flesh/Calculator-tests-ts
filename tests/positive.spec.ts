@@ -1,11 +1,14 @@
-import { test, expect, request } from '@playwright/test';
+import { test, expect, request, chromium, Browser } from '@playwright/test';
 import { Calculator } from '../models/calculator';
 
 test.describe('Calculator tests', () => {
-    let calculator: Calculator;
+    let calculator: Calculator;    
 
-    test.beforeAll(async ({ browser }) => {
-        const page = await browser.newPage();
+    test.beforeAll(async ({browser, browserName}) => {
+        let brw: Browser = browser;
+        if(browserName == "chromium")
+            brw = await chromium.launch({proxy: {server: "http://10.200.200.22:3129"}});
+        const page = await brw.newPage();
         calculator = new Calculator(page);
         await calculator.goHome();
     });

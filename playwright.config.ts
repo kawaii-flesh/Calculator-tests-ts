@@ -44,7 +44,7 @@ const config: PlaywrightTestConfig = {
   projects: [
     {
       name: 'chromium',
-      use: {
+      use: {        
         ...devices['Desktop Chrome'],
       },
     },
@@ -59,37 +59,10 @@ const config: PlaywrightTestConfig = {
     {
       name: 'webkit',
       use: {
+        proxy: {server: "http://10.200.200.22:3129"},
         ...devices['Desktop Safari'],
       },
-    },
-
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: {
-    //     ...devices['Pixel 5'],
-    //   },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: {
-    //     ...devices['iPhone 12'],
-    //   },
-    // },
-
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: {
-    //     channel: 'msedge',
-    //   },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: {
-    //     channel: 'chrome',
-    //   },
-    // },
+    }
   ],
 
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
